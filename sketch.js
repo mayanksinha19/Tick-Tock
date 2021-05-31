@@ -1,71 +1,49 @@
-var hr, min, sec;
-
 function setup() {
-  createCanvas(1000,800);
- 
+  createCanvas(800,400);
+  angleMode(DEGREES);
 }
 
 function draw() {
-  background(0);  
-
-  angleMode(DEGREES);
-
-  hr = hour();
-  min = minute();
-  sec = second();
-
-  hrAngle = map(hr%12,0,12,0,360);
-  minAngle = map(min,0,60,8,360);
-  secAngle = map(sec,0,60,0,360);
-
-  translate(500,400);
+  background(10);  
+  translate(200,200);
   rotate(-90);
 
-  fill("red");
-  arc(0,0,540,540,hr*30,PI);
-  fill(0);
-  arc(0,0,520,520,PI,PI);
+  let hr = hour();
+  let mn = minute();
+  let sc = second();
 
-  fill("green");
-  arc(0,0,520,520,min*6,PI);
-  fill(0);
-  arc(0,0,500,500,PI,PI);
+  
 
-  fill("blue");
-  arc(0,0,500,500,hr*6,PI);
-  fill(0);
-  arc(0,0,480,480,PI,PI);
+  stroke(255,100,150);
+  noFill();
+  strokeWeight(8);
 
-
+  let end = map(sc, 0, 60, 0, 360);
+  arc(0,0,300,300,0,end,OPEN);
   push();
-
-  rotate(hrAngle);
-  stroke("red");
-  strokeWeight(7);
+  rotate(end);
+  stroke(255,100,150);
+  line(0,0,120,0);
+  pop();
+  
+  stroke("yellow");
+  let end2 = map(mn, 0, 59, 00, 360);
+  arc(0,0,280,280,0,end2,OPEN);
+  push();
+  rotate(end2);
+  stroke("yellow");
   line(0,0,100,0);
-
   pop();
 
-
-  push();
-
-  rotate(minAngle);
-  stroke("green");
-  strokeWeight(7);
-  line(0,0,150,0);
-
-  pop();
-
-  push();
-
-  rotate(secAngle);
   stroke("blue");
-  strokeWeight(7);
-  line(0,0,200,0);
-
+  let end3 = map(hr%12, 0, 12, 0, 360);
+  arc(0,0,260,260,0,end3,OPEN);
+  push();
+  rotate(end3);
+  stroke("blue");
+  line(0,0,80,0);
   pop();
 
-  console.log(hr+ "" +min+ "" +sec)
 
   drawSprites();
 }
